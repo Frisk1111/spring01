@@ -6,10 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Elenco delle regioni italiane</title>
+<title>Elenco dei clienti</title>
 </head>
 <body>
-<h1>Elenco delle regioni italiane</h1>
+<h1>Elenco dei clienti</h1>
 
 <%
 // inizio codice java

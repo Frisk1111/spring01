@@ -25,6 +25,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework:spring-webflux'
 	testImplementation 'org.springframework.graphql:spring-graphql-test'
+	// https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
+	implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.2.0'
+
+	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.16'
+
+
+
 }
 
 tasks.named('test') {
