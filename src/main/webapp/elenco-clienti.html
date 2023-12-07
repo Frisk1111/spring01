@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elenco clienti</title>
+    <script src="js/net-functions.js"></script>
+    <script src="js/dom-functions.js"></script>
+    <style>
+        /* CSS per "dipingere" la table */
+        table,
+        tr,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h1>Elenco dei Clienti</h1>
+   
+    <div id="segnaposto"></div>
+
+    <script>
+        "use strict"
+        const intestazioni = ["id", "nome", "cognome", "email", "indirizzo", "citta", "provincia", "cap"];
+
+        // acquisire il segnaposto
+        const segnaposto = document.getElementById("segnaposto");
+        console.log(segnaposto);
+
+        // creare una table 
+        const tabella = document.createElement("table");
+        // la piazzo nel segnaposto
+        segnaposto.appendChild(tabella);
+
+        // creare una tr
+        let tr = document.createElement("tr");
+        // appenderla alla table
+        tabella.appendChild(tr);
+
+
+        for (let intestazione of intestazioni) {
+            // per ogni elemento dell'array creo una th
+            const th = document.createElement("th");
+
+            // creo il payload con l'intestazione
+            const textNode = document.createTextNode(intestazione);
+
+            // aggiungo l'intestazione alla th
+            th.appendChild(textNode);
+
+            // appendo la th alla row
+            tr.appendChild(th);
+        }
+        
+        const url ="http://localhost:8080/clienti";
+
+        getJson(url, createTableBody);
+
+        function createTableBody(clienti) {
+             console.log(clienti);
+            for(const cliente of clienti) {
+                const tr = createAndAppendElement("tr", tabella);
+
+                //ID
+                let td = createAndAppendElement("td", tr);
+                let link = createAndAppendElement("a", td)
+                link.href = "cliente.html?func=display&id="+cliente.idCliente; // <a href="cliente.html?id=5"> cliente </a>
+                createAndAppendTextNode(cliente.idCliente, link);
+                
+                //NOME
+                td = createAndAppendElement("td", tr);
+                link = createAndAppendElement("a", td)
+                link.href = "cliente.html?func=display&id="+cliente.idCliente;
+                createAndAppendTextNode(cliente.nome, link);
+ 
+                //COGNOME
+                td = createAndAppendElement("td", tr);
+                link = createAndAppendElement("a", td)
+                link.href = "cliente.html?func=display&id="+cliente.idCliente;
+                createAndAppendTextNode(cliente.cognome, link);
+ 
+                //EMAIL
+                td = createAndAppendElement("td", tr);
+                createAndAppendTextNode(cliente.email, td);
+ 
+                //INDIRIZZO
+                td = createAndAppendElement("td", tr);
+                createAndAppendTextNode(cliente.indirizzo, td);
+ 
+                //CITTA
+                td = createAndAppendElement("td", tr);
+                createAndAppendTextNode(cliente.citta, td);
+
+                //PROVINCIA
+                td = createAndAppendElement("td", tr);
+                createAndAppendTextNode(cliente.provincia, td);
+
+                //CAP
+                td = createAndAppendElement("td", tr);
+                createAndAppendTextNode(cliente.cap, td);
+ 
+                }
+            }
+        </script>
+</body>
+</html>

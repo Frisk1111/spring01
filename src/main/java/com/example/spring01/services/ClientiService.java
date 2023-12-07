@@ -36,4 +36,13 @@ public class ClientiService {
         return cliente;
 
     }
+    public boolean deleteById(Integer id) {
+        if(findById(id).isEmpty()) { // l'id non corrisponde a nessun cliente
+            return false;
+        }
+        repo.deleteById(id);
+        return true;
+    }
+
+
 }

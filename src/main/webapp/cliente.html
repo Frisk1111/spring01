@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente</title>
+    <script src="js/net-functions.js"></script>
+    <script src="js/dom-functions.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<h1>Cliente</h1>
+
+<div>
+
+    <div>
+        <label for="idCliente">Id Cliente:</label>
+        <input type="text" id="idCliente" readonly>
+    </div>
+
+    <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome">
+    </div>
+
+    <div>
+        <label for="cognome">Cognome:</label>
+        <input type="text" id="cognome">
+    </div>
+
+    <div>
+        <label for="email">E-mail:</label>
+        <input type="text" id="email">
+    </div>
+
+    <div>
+        <label for="indirizzo">Indirizzo:</label>
+        <input type="text" id="indirizzo">
+    </div>
+
+    <div>
+        <label for="citta">Città:</label>
+        <input type="text" id="citta">
+    </div>
+
+    <div>
+        <label for="provincia">Provincia:</label>
+        <input type="text" id="provincia">
+    </div>
+
+    <div>
+        <label for="cap">Cap:</label>
+        <input type="text" id="cap">
+    </div>
+
+    <div id="segnaposto"></div>
+</div>
+
+<script>
+        /* INIZIO: prendo il valore di un parametro passato sulla query string */
+        console.log("url corrente", window.location.href);
+        console.log("query string", window.location.search);
+        const urlParameters = new URLSearchParams(window.location.search);
+        const id = urlParameters.get("id");
+        const func = urlParameters.get("func");
+        console.log("id =", id);
+        console.log("func =", func);
+        /* FINE: prendo il valore di un parametro passato sulla query string */
+
+        const url="http://localhost:8080/clienti/"+id;
+
+        const segnaposto = document.getElementById("segnaposto");
+
+        if(func === "display") {
+            proteggiFields();
+            const link = createAndAppendElement("a", segnaposto);
+            link.href="elenco-clienti.html";
+            createAndAppendTextNode("Go Back", link)
+        }
+
+
+        getJson(url, riempiDatiCliente);
+
+        function riempiDatiCliente(cliente) {
+            console.log(cliente);
+            document.getElementById("idCliente").value=cliente.idCliente;
+            document.getElementById("nome").value=cliente.nome;
+            document.getElementById("cognome").value=cliente.cognome;
+            document.getElementById("email").value=cliente.email;
+            document.getElementById("indirizzo").value=cliente.indirizzo;
+            document.getElementById("citta").value=cliente.citta;
+            document.getElementById("provincia").value=cliente.provincia;
+            document.getElementById("cap").value=cliente.cap;
+        }
+
+        function proteggiFields() {
+            document.getElementById("nome").readOnly = true;
+            document.getElementById("cognome").readOnly = true;
+            document.getElementById("email").readOnly = true;
+            document.getElementById("indirizzo").readOnly = true;
+            document.getElementById("citta").readOnly = true;
+            document.getElementById("provincia").readOnly = true;
+            document.getElementById("cap").readOnly = true;
+        }
+
+    </script>
+</body>
+</html>
