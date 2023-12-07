@@ -10,6 +10,12 @@ async function getJson(url, processFunction) {
     processFunction(jsonObject);
 }
 
+
+
+async deleteFunction(){
+
+
+}
 /*
   // sintassi nativa per le promise
 const prom01 = fetch("http://localhsot/clienti");

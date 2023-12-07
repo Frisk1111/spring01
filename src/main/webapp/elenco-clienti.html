@@ -101,6 +101,13 @@
                 //CAP
                 td = createAndAppendElement("td", tr);
                 createAndAppendTextNode(cliente.cap, td);
+
+                //DELETE ICON
+                td = createAndAppendElement("td", tr);
+                link= createAndAppendElement("a", td);
+                link.href= "cliente.html?func=delete%img="+cliente.idCliente;
+                let img = createAndAppendElement("img", link);
+                img.src = "images/img.png";
  
                 }
             }

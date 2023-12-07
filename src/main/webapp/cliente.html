@@ -72,12 +72,30 @@
         const url="http://localhost:8080/clienti/"+id;
 
         const segnaposto = document.getElementById("segnaposto");
+let link;
+let button;
 
-        if(func === "display") {
+
+        switch(func){
+        case "display":
+        proteggiFields();
+            const link = createAndAppendElement("a", segnaposto);
+            link.href="elenco-clienti.html";
+            createAndAppendTextNode("Go Back", link)
+        break;
+
+       case "delete":
             proteggiFields();
             const link = createAndAppendElement("a", segnaposto);
             link.href="elenco-clienti.html";
             createAndAppendTextNode("Go Back", link)
+            button = createAndAppendElement("input", segnaposto);
+            button.type = "button";
+            button.value= "Conferma rimozione!";
+            button.onclick = "confermaRimozione()";
+            console.log(button);
+
+       break;
         }
 
 
@@ -105,6 +123,7 @@
             document.getElementById("cap").readOnly = true;
         }
 
-    </script>
+
+</script>
 </body>
 </html>
