@@ -12,10 +12,15 @@ async function getJson(url, processFunction) {
 
 
 
-async deleteFunction(){
+async function deleteHttp(url, processFunction) {
 
+  const response = await fetch(url, {"method":"delete"});
 
+  const jsonObject = await response.json();
+
+  processFunction(jsonObject);
 }
+
 /*
   // sintassi nativa per le promise
 const prom01 = fetch("http://localhsot/clienti");
